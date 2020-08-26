@@ -104,6 +104,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: null,
                 textAlign: TextAlign.start,
               ),
+              Expanded(child: Container()),
+              SubmitButton(
+                onPressed: null,
+                submitText: null,
+                valid: null,
+              )
             ],
           ),
         ),
