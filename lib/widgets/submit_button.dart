@@ -25,7 +25,10 @@ class SubmitButton extends StatelessWidget {
           color: Colors.green[400],
           child: Text(
             submitText,
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20.0,
+            ),
           ),
           onPressed: onPressed,
         ),

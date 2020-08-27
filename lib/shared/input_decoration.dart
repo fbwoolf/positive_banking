@@ -10,6 +10,7 @@ const inputDecoration = InputDecoration(
   ),
   fillColor: Colors.white,
   filled: true,
+  floatingLabelBehavior: FloatingLabelBehavior.never,
   focusedBorder: OutlineInputBorder(
     borderSide: BorderSide(
       color: Colors.green,

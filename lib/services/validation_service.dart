@@ -45,7 +45,7 @@ class ValidatorInputFormatter implements TextInputFormatter {
 
 class DecimalNumberEditingRegexValidator extends RegexValidator {
   DecimalNumberEditingRegexValidator()
-      : super(regexSource: "^\$|^(0|([1-9][0-9]{0,3}))(\\.[0-9]{0,2})?\$");
+      : super(regexSource: "^\$|^(0|([1-9][0-9]{0,4}))(\\.[0-9]{0,2})?\$");
 }
 
 class DecimalNumberSubmitValidator implements StringValidator {

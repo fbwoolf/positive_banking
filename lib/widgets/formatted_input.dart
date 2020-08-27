@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 class FormattedInput extends StatelessWidget {
   FormattedInput({
+    @required this.autoFocus,
     @required this.decoration,
     @required this.focusNode,
     @required this.inputFormatter,
@@ -11,9 +12,11 @@ class FormattedInput extends StatelessWidget {
     @required this.onEditingComplete,
     @required this.style,
     @required this.textAlign,
+    @required this.validator,
     Key key,
   }) : super(key: key);
 
+  final bool autoFocus;
   final InputDecoration decoration;
   final FocusNode focusNode;
   final TextInputFormatter inputFormatter;
@@ -22,11 +25,13 @@ class FormattedInput extends StatelessWidget {
   final Function() onEditingComplete;
   final TextStyle style;
   final TextAlign textAlign;
+  final Function(String) validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       autocorrect: false,
+      autofocus: autoFocus,
       decoration: decoration,
       focusNode: focusNode,
       inputFormatters: [
@@ -38,6 +43,7 @@ class FormattedInput extends StatelessWidget {
       style: style,
       textAlign: textAlign,
       textInputAction: TextInputAction.done,
+      validator: validator,
     );
   }
 }
