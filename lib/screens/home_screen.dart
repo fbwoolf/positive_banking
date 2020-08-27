@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:positive_banking/models/models.dart';
 import 'package:positive_banking/routes.dart';
 import 'package:positive_banking/services/services.dart';
 import 'package:positive_banking/shared/shared.dart';
@@ -120,7 +121,15 @@ class _HomeScreenState extends State<HomeScreen> {
               SubmitButton(
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    Navigator.pushReplacementNamed(context, detailsRoute);
+                    Account account = new Account(
+                      balance: _averageBalance,
+                      transactions: [_transaction1, _transaction2],
+                    );
+                    Navigator.pushReplacementNamed(
+                      context,
+                      detailsRoute,
+                      arguments: account,
+                    );
                   } else {
                     _autoValidate = true;
                   }
