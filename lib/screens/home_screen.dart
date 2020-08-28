@@ -71,11 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               Hero(
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(40),
                   child: Image.asset(
                     'assets/logo.png',
-                    width: 100,
-                    height: 100,
+                    width: 80,
+                    height: 80,
                   ),
                 ),
                 tag: 'logo',
@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 20.0),
               FormattedInput(
-                autoFocus: true,
+                autoFocus: false,
                 controller: _controller1,
                 decoration: InputDecoration(
                   prefixText: currency,

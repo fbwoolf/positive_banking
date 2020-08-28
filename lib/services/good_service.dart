@@ -18,7 +18,7 @@ class GoodService {
     double sumOfTransactions = transactions
         .map<double>((v) => double.parse(v))
         .fold(0, (prev, curr) => prev + curr);
-    double acres = sumOfTransactions * 0.3;
+    double acres = sumOfTransactions * 0.03;
     int trees = (sumOfTransactions * 900).round();
     int animals = (acres * 12000).round();
     Impact impact = new Impact(
