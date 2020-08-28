@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 class FormattedInput extends StatelessWidget {
   FormattedInput({
     @required this.autoFocus,
+    @required this.controller,
     @required this.decoration,
     @required this.focusNode,
     @required this.inputFormatter,
@@ -17,6 +18,7 @@ class FormattedInput extends StatelessWidget {
   }) : super(key: key);
 
   final bool autoFocus;
+  final TextEditingController controller;
   final InputDecoration decoration;
   final FocusNode focusNode;
   final TextInputFormatter inputFormatter;
@@ -32,6 +34,7 @@ class FormattedInput extends StatelessWidget {
     return TextFormField(
       autocorrect: false,
       autofocus: autoFocus,
+      controller: controller,
       decoration: decoration,
       focusNode: focusNode,
       inputFormatters: [

@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 class SubmitButton extends StatelessWidget {
   SubmitButton({
+    @required this.enabled,
     @required this.onPressed,
     @required this.submitText,
-    @required this.valid,
     Key key,
   }) : super(key: key);
 
+  final bool enabled;
   final Function() onPressed;
   final String submitText;
-  final bool valid;
 
   @override
   Widget build(BuildContext context) {
     return Opacity(
-      opacity: valid ? 1.0 : 0.0,
+      opacity: enabled ? 1.0 : 0.0,
       child: Container(
         constraints: BoxConstraints.expand(
           width: double.infinity,
@@ -30,7 +30,7 @@ class SubmitButton extends StatelessWidget {
               fontSize: 20.0,
             ),
           ),
-          onPressed: onPressed,
+          onPressed: enabled ? onPressed : null,
         ),
       ),
     );

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:positive_banking/models/models.dart';
 import 'package:positive_banking/services/services.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Account account;
+  final formatNumber = new NumberFormat();
 
   DetailsScreen({
     this.account,
@@ -25,10 +27,10 @@ class DetailsScreen extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            Text(shares.toStringAsFixed(2)),
-            Text(impact.acres.toStringAsFixed(2)),
-            Text(impact.trees.toString()),
-            Text(impact.animals.toString()),
+            Text('${formatNumber.format(shares)}'),
+            Text('${formatNumber.format(impact.acres)}'),
+            Text('${formatNumber.format(impact.trees)}'),
+            Text('${formatNumber.format(impact.animals)}'),
           ],
         ),
       ),
