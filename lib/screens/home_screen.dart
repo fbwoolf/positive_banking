@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:positive_banking/models/models.dart';
 import 'package:positive_banking/routes.dart';
 import 'package:positive_banking/services/services.dart';
-import 'package:positive_banking/shared/shared.dart';
 import 'package:positive_banking/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,22 +13,32 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   static const _locale = 'en';
+  final _formKey = GlobalKey<FormState>();
+
+  // Text field nodes
   FocusNode _focusNode1 = FocusNode();
   FocusNode _focusNode2 = FocusNode();
   FocusNode _focusNode3 = FocusNode();
-  final _formKey = GlobalKey<FormState>();
-  final _averageBalanceController = TextEditingController();
-  final _transaction1Controller = TextEditingController();
-  final _transaction2Controller = TextEditingController();
 
+  // Text field controllers
+  final _controller1 = TextEditingController();
+  final _controller2 = TextEditingController();
+  final _controller3 = TextEditingController();
+
+  // Form state
+  String _averageBalance = '';
+  String _transaction1 = '';
+  String _transaction2 = '';
   bool _autoValidate = false;
   bool _enableBtn = false;
 
+  // Format number to USD currency
   String _formatNumber(String string) {
     final format = NumberFormat.decimalPattern(_locale);
     return format.format(int.parse(string));
   }
 
+  // Get currency symbol
   String get currency =>
       NumberFormat.compactSimpleCurrency(locale: _locale).currencySymbol;
 
@@ -48,12 +57,24 @@ class _HomeScreenState extends State<HomeScreen> {
           autovalidate: _autoValidate,
           key: _formKey,
           onChanged: () => setState(
-            () => _enableBtn = _averageBalanceController.text.isNotEmpty &&
-                _transaction1Controller.text.isNotEmpty &&
-                _transaction2Controller.text.isNotEmpty,
+            () => _enableBtn = _averageBalance.isNotEmpty &&
+                _transaction1.isNotEmpty &&
+                _transaction2.isNotEmpty,
           ),
           child: Column(
             children: <Widget>[
+              Hero(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset(
+                    'assets/logo.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                ),
+                tag: 'logo',
+              ),
+              SizedBox(height: 20.0),
               Text(
                 'Make a Good transaction',
                 style: TextStyle(fontSize: 18.0),
@@ -61,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 20.0),
               FormattedInput(
                 autoFocus: true,
-                controller: _averageBalanceController,
+                controller: _controller1,
                 decoration: InputDecoration(prefixText: currency),
                 focusNode: _focusNode1,
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
@@ -69,16 +90,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   editingValidator: DecimalNumberEditingRegexValidator(),
                 ),
                 onChanged: (string) {
-                  string = '${_formatNumber(string.replaceAll(',', ''))}';
-                  _averageBalanceController.text = string;
-                  _averageBalanceController.selection =
-                      TextSelection.fromPosition(
+                  string = _formatNumber(string.replaceAll(',', ''));
+                  _controller1.text = string;
+                  _controller1.selection = TextSelection.fromPosition(
                     TextPosition(offset: string.length),
                   );
+                  setState(() => _averageBalance = string.replaceAll(',', ''));
                 },
                 onEditingComplete: () {
-                  bool valid = DecimalNumberSubmitValidator()
-                      .isValid(_averageBalanceController.text);
+                  bool valid =
+                      DecimalNumberSubmitValidator().isValid(_averageBalance);
                   valid
                       ? _focusNode1.nextFocus()
                       : FocusScope.of(context).requestFocus(_focusNode1);
@@ -91,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 20.0),
               FormattedInput(
                 autoFocus: false,
-                controller: _transaction1Controller,
+                controller: _controller2,
                 decoration: InputDecoration(prefixText: currency),
                 focusNode: _focusNode2,
                 inputFormatter: ValidatorInputFormatter(
@@ -99,16 +120,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 onChanged: (string) {
-                  string = '${_formatNumber(string.replaceAll(',', ''))}';
-                  _transaction1Controller.text = string;
-                  _transaction1Controller.selection =
-                      TextSelection.fromPosition(
+                  string = _formatNumber(string.replaceAll(',', ''));
+                  _controller2.text = string;
+                  _controller2.selection = TextSelection.fromPosition(
                     TextPosition(offset: string.length),
                   );
+                  setState(() => _transaction1 = string.replaceAll(',', ''));
                 },
                 onEditingComplete: () {
-                  bool valid = DecimalNumberSubmitValidator()
-                      .isValid(_transaction1Controller.text);
+                  bool valid =
+                      DecimalNumberSubmitValidator().isValid(_transaction1);
                   valid
                       ? _focusNode2.nextFocus()
                       : FocusScope.of(context).requestFocus(_focusNode2);
@@ -121,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 20.0),
               FormattedInput(
                 autoFocus: false,
-                controller: _transaction2Controller,
+                controller: _controller3,
                 decoration: InputDecoration(prefixText: currency),
                 focusNode: _focusNode3,
                 inputFormatter: ValidatorInputFormatter(
@@ -129,16 +150,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 onChanged: (string) {
-                  string = '${_formatNumber(string.replaceAll(',', ''))}';
-                  _transaction2Controller.text = string;
-                  _transaction2Controller.selection =
-                      TextSelection.fromPosition(
+                  string = _formatNumber(string.replaceAll(',', ''));
+                  _controller3.text = string;
+                  _controller3.selection = TextSelection.fromPosition(
                     TextPosition(offset: string.length),
                   );
+                  setState(() => _transaction2 = string.replaceAll(',', ''));
                 },
                 onEditingComplete: () {
-                  bool valid = DecimalNumberSubmitValidator()
-                      .isValid(_transaction2Controller.text);
+                  bool valid =
+                      DecimalNumberSubmitValidator().isValid(_transaction2);
                   valid
                       ? _focusNode3.unfocus()
                       : FocusScope.of(context).requestFocus(_focusNode3);
@@ -153,13 +174,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
                     Account account = new Account(
-                      balance: _averageBalanceController.text,
+                      balance: _averageBalance,
                       transactions: [
-                        _transaction1Controller.text,
-                        _transaction2Controller.text
+                        _transaction1,
+                        _transaction2,
                       ],
                     );
-                    Navigator.pushReplacementNamed(
+                    Navigator.pushNamed(
                       context,
                       detailsRoute,
                       arguments: account,

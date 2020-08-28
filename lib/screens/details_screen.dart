@@ -18,7 +18,7 @@ class DetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transaction Details'),
+        title: Text('Your Good Details'),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
@@ -27,10 +27,83 @@ class DetailsScreen extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            Text('${formatNumber.format(shares)}'),
-            Text('${formatNumber.format(impact.acres)}'),
-            Text('${formatNumber.format(impact.trees)}'),
-            Text('${formatNumber.format(impact.animals)}'),
+            SizedBox(height: 20.0),
+            Text(
+              'Good Shares',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20.0),
+            Card(
+              child: ListTile(
+                leading: Hero(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset(
+                      'assets/logo.png',
+                      width: 40,
+                      height: 40,
+                    ),
+                  ),
+                  tag: 'logo',
+                ),
+                title: Text('${formatNumber.format(shares)} Shares'),
+                subtitle: Text('You\'ve Unlocked'),
+              ),
+            ),
+            SizedBox(height: 40.0),
+            Text(
+              'Good Impact',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20.0),
+            Card(
+              child: ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/logo.png',
+                    width: 40,
+                    height: 40,
+                  ),
+                ),
+                title: Text('${formatNumber.format(impact.acres)} Acres'),
+                subtitle: Text('You\'ve Protected'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/logo.png',
+                    width: 40,
+                    height: 40,
+                  ),
+                ),
+                title: Text('${formatNumber.format(impact.trees)} Trees'),
+                subtitle: Text('You\'ve Protected'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    'assets/logo.png',
+                    width: 40,
+                    height: 40,
+                  ),
+                ),
+                title: Text('${formatNumber.format(impact.animals)} Animals'),
+                subtitle: Text('You\'ve Protected'),
+              ),
+            ),
           ],
         ),
       ),

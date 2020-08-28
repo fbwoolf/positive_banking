@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:positive_banking/routes.dart';
-import 'package:positive_banking/screens/home_screen.dart';
 import 'package:positive_banking/services/services.dart';
+import 'package:positive_banking/shared/shared.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
       initialRoute: homeRoute,
       onGenerateRoute: RouterService.generateRoute,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        fontFamily: 'Inter',
+        primarySwatch: goodMoneyColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       title: 'Positive Banking',

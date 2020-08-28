@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:positive_banking/shared/custom_color.dart';
 
 class SubmitButton extends StatelessWidget {
   SubmitButton({
@@ -22,7 +23,7 @@ class SubmitButton extends StatelessWidget {
           height: 60.0,
         ),
         child: FlatButton(
-          color: Colors.green[400],
+          color: goodMoneyColor,
           child: Text(
             submitText,
             style: TextStyle(
@@ -31,6 +32,9 @@ class SubmitButton extends StatelessWidget {
             ),
           ),
           onPressed: enabled ? onPressed : null,
+          shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(30.0),
+          ),
         ),
       ),
     );
