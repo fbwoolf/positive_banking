@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:positive_banking/models/models.dart';
+import 'package:positive_banking/routes.dart';
 import 'package:positive_banking/services/services.dart';
+import 'package:positive_banking/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Account account;
@@ -18,7 +20,13 @@ class DetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Good Details'),
+        title: Text(
+          'Ownership Economy',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
@@ -31,8 +39,8 @@ class DetailsScreen extends StatelessWidget {
             Text(
               'Good Shares',
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
               ),
             ),
             SizedBox(height: 20.0),
@@ -49,7 +57,13 @@ class DetailsScreen extends StatelessWidget {
                   ),
                   tag: 'logo',
                 ),
-                title: Text('${formatNumber.format(shares)} Shares'),
+                title: Text(
+                  '${formatNumber.format(shares)} Shares',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 subtitle: Text('You\'ve Unlocked'),
               ),
             ),
@@ -57,8 +71,8 @@ class DetailsScreen extends StatelessWidget {
             Text(
               'Good Impact',
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
               ),
             ),
             SizedBox(height: 20.0),
@@ -72,7 +86,13 @@ class DetailsScreen extends StatelessWidget {
                     height: 40,
                   ),
                 ),
-                title: Text('${formatNumber.format(impact.acres)} Acres'),
+                title: Text(
+                  '${formatNumber.format(impact.acres)} Acres',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 subtitle: Text('You\'ve Protected'),
               ),
             ),
@@ -86,7 +106,13 @@ class DetailsScreen extends StatelessWidget {
                     height: 40,
                   ),
                 ),
-                title: Text('${formatNumber.format(impact.trees)} Trees'),
+                title: Text(
+                  '${formatNumber.format(impact.trees)} Trees',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 subtitle: Text('You\'ve Protected'),
               ),
             ),
@@ -100,8 +126,30 @@ class DetailsScreen extends StatelessWidget {
                     height: 40,
                   ),
                 ),
-                title: Text('${formatNumber.format(impact.animals)} Animals'),
+                title: Text(
+                  '${formatNumber.format(impact.animals)} Animals',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 subtitle: Text('You\'ve Protected'),
+              ),
+            ),
+            Expanded(
+              child: Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: ActionButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      homeRoute,
+                      arguments: account,
+                    );
+                  },
+                  submitText: 'New Transaction',
+                  enabled: true,
+                ),
               ),
             ),
           ],

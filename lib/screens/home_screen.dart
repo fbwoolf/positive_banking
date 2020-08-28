@@ -46,7 +46,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Positive Banking'),
+        title: Text(
+          'Ownership Economy',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(
@@ -77,13 +83,19 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 20.0),
               Text(
                 'Make a Good transaction',
-                style: TextStyle(fontSize: 18.0),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               SizedBox(height: 20.0),
               FormattedInput(
                 autoFocus: true,
                 controller: _controller1,
-                decoration: InputDecoration(prefixText: currency),
+                decoration: InputDecoration(
+                  prefixText: currency,
+                  hintText: ' Average Balance',
+                ),
                 focusNode: _focusNode1,
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatter: ValidatorInputFormatter(
@@ -113,7 +125,10 @@ class _HomeScreenState extends State<HomeScreen> {
               FormattedInput(
                 autoFocus: false,
                 controller: _controller2,
-                decoration: InputDecoration(prefixText: currency),
+                decoration: InputDecoration(
+                  prefixText: currency,
+                  hintText: ' Transaction 1',
+                ),
                 focusNode: _focusNode2,
                 inputFormatter: ValidatorInputFormatter(
                   editingValidator: DecimalNumberEditingRegexValidator(),
@@ -143,7 +158,10 @@ class _HomeScreenState extends State<HomeScreen> {
               FormattedInput(
                 autoFocus: false,
                 controller: _controller3,
-                decoration: InputDecoration(prefixText: currency),
+                decoration: InputDecoration(
+                  prefixText: currency,
+                  hintText: ' Transaction 2',
+                ),
                 focusNode: _focusNode3,
                 inputFormatter: ValidatorInputFormatter(
                   editingValidator: DecimalNumberEditingRegexValidator(),
@@ -169,29 +187,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 validator: (val) =>
                     val.isEmpty ? 'Please enter a transaction' : null,
               ),
-              Expanded(child: Container()),
-              SubmitButton(
-                onPressed: () {
-                  if (_formKey.currentState.validate()) {
-                    Account account = new Account(
-                      balance: _averageBalance,
-                      transactions: [
-                        _transaction1,
-                        _transaction2,
-                      ],
-                    );
-                    Navigator.pushNamed(
-                      context,
-                      detailsRoute,
-                      arguments: account,
-                    );
-                  } else {
-                    _autoValidate = true;
-                  }
-                },
-                submitText: 'Submit',
-                enabled: _enableBtn,
-              )
+              Expanded(
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: ActionButton(
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        Account account = new Account(
+                          balance: _averageBalance,
+                          transactions: [
+                            _transaction1,
+                            _transaction2,
+                          ],
+                        );
+                        Navigator.pushReplacementNamed(
+                          context,
+                          detailsRoute,
+                          arguments: account,
+                        );
+                      } else {
+                        _autoValidate = true;
+                      }
+                    },
+                    submitText: 'Submit',
+                    enabled: _enableBtn,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

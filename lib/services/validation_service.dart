@@ -4,6 +4,7 @@ abstract class StringValidator {
   bool isValid(String value);
 }
 
+// Verifies the matched input string is valid
 class RegexValidator implements StringValidator {
   RegexValidator({this.regexSource});
   final String regexSource;
@@ -43,13 +44,16 @@ class ValidatorInputFormatter implements TextInputFormatter {
   }
 }
 
+// Validates the input string while typing
 class DecimalNumberEditingRegexValidator extends RegexValidator {
+  // Currency regex
   DecimalNumberEditingRegexValidator()
       : super(
             regexSource:
-                "^\$|^(0|[0-9,]{0,3}(?:,?[0-9,]{1,3}))*(\.[0-9]{0,2})?\$");
+                "^\$|^(0|[0-9]{0,3}(?:,?[0-9]{1,3}))*(\.[0-9]{0,2})?\$");
 }
 
+// Validates the complete input string
 class DecimalNumberSubmitValidator implements StringValidator {
   @override
   bool isValid(String value) {

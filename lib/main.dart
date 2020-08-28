@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       initialRoute: homeRoute,
       onGenerateRoute: RouterService.generateRoute,
       theme: ThemeData(
-        fontFamily: 'Inter',
+        fontFamily: 'Montserrat',
         primarySwatch: goodMoneyColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

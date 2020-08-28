@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:positive_banking/shared/custom_color.dart';
 
-class SubmitButton extends StatelessWidget {
-  SubmitButton({
+class ActionButton extends StatelessWidget {
+  ActionButton({
     @required this.enabled,
     @required this.onPressed,
     @required this.submitText,
