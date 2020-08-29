@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:positive_banking/bloc/account/account_bloc.dart';
+import 'package:positive_banking/repositories/account_repository.dart';
 import 'package:positive_banking/routes.dart';
 import 'package:positive_banking/services/services.dart';
 import 'package:positive_banking/shared/shared.dart';
+import 'package:uuid/uuid.dart';
+
+import 'bloc/simple_bloc_observer.dart';
 
 void main() {
-  runApp(MyApp());
+  Bloc.observer = SimpleBlocObserver();
+  final AccountRepository accountRepository = new AccountRepository();
+
+  runApp(
+    BlocProvider(
+      create: (context) {
+        return AccountBloc(accountRepository: accountRepository)
+          // Generating a unique id to load a fake account
+          ..add(AccountLoaded(Uuid().v1()));
+      },
+      child: App(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
