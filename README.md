@@ -2,7 +2,7 @@
 
 **VSCode**
 
-- Run `pub get` to install packages
+- Run `flutter pub get` to install packages
 - Select a simulator
 - Run `flutter run`
 
