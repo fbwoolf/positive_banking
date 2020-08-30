@@ -8,9 +8,8 @@ class RouterService {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case detailsRoute:
-        Account account = settings.arguments;
         return MaterialPageRoute(
-          builder: (context) => DetailsScreen(account: account),
+          builder: (context) => DetailsScreen(),
         );
       case homeRoute:
         return MaterialPageRoute(builder: (context) => HomeScreen());

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:positive_banking/models/account.dart';
 import 'package:positive_banking/repositories/account_repository.dart';
 
 part 'account_event.dart';
@@ -22,6 +21,10 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   ) async* {
     if (event is AccountLoaded) {
       yield* _mapAccountLoadedToState(event);
+    } else if (event is AccountAverageBalanceChanged) {
+      yield _mapAccountAverageBalanceChangedToState(event);
+    } else if (event is AccountTransactionsChanged) {
+      yield _mapAccountTransactionsChangedToState(event);
     }
   }
 
@@ -29,9 +32,23 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     yield AccountLoadInProgress();
     try {
       final account = await accountRepository.fetchAccountFromFakeApi(event.id);
-      yield AccountLoadSuccess(account: account);
+      yield AccountLoadSuccess(
+        balance: account.balance,
+        id: account.id,
+        transactions: account.transactions,
+      );
     } catch (_) {
       yield AccountLoadFailure();
     }
+  }
+
+  AccountState _mapAccountAverageBalanceChangedToState(
+      AccountAverageBalanceChanged event) {
+    return state.copyWith(balance: event.balance);
+  }
+
+  AccountState _mapAccountTransactionsChangedToState(
+      AccountTransactionsChanged event) {
+    return state.copyWith(transactions: event.transactions);
   }
 }

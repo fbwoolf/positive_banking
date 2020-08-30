@@ -11,12 +11,11 @@ import 'bloc/simple_bloc_observer.dart';
 
 void main() {
   Bloc.observer = SimpleBlocObserver();
-  final AccountRepository accountRepository = new AccountRepository();
 
   runApp(
     BlocProvider(
       create: (context) {
-        return AccountBloc(accountRepository: accountRepository)
+        return AccountBloc(accountRepository: AccountRepository())
           // Generating a unique id to load a fake account
           ..add(AccountLoaded(Uuid().v1()));
       },

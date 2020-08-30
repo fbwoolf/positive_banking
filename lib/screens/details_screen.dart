@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:positive_banking/models/models.dart';
+import 'package:positive_banking/bloc/account/account_bloc.dart';
+import 'package:positive_banking/models/good.dart';
 import 'package:positive_banking/routes.dart';
 import 'package:positive_banking/services/services.dart';
 import 'package:positive_banking/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final Account account;
   final formatNumber = new NumberFormat();
-
-  DetailsScreen({
-    this.account,
-  });
 
   @override
   Widget build(BuildContext context) {
-    double shares = GoodService().calculateGoodShares(account.balance);
-    Impact impact = GoodService().calculateGoodImpact(account.transactions);
+    double shares = GoodService().calculateGoodShares(
+        BlocProvider.of<AccountBloc>(context).state.balance);
+    Impact impact = GoodService().calculateGoodImpact(
+        BlocProvider.of<AccountBloc>(context).state.transactions);
 
     return Scaffold(
       appBar: AppBar(
@@ -144,11 +143,9 @@ class DetailsScreen extends StatelessWidget {
                     Navigator.pushReplacementNamed(
                       context,
                       homeRoute,
-                      arguments: account,
                     );
                   },
                   submitText: 'New Transaction',
-                  enabled: true,
                 ),
               ),
             ),

@@ -15,3 +15,21 @@ class AccountLoaded extends AccountEvent {
   @override
   List<Object> get props => [id];
 }
+
+class AccountAverageBalanceChanged extends AccountEvent {
+  final String balance;
+
+  const AccountAverageBalanceChanged({this.balance});
+
+  @override
+  List<Object> get props => [balance];
+}
+
+class AccountTransactionsChanged extends AccountEvent {
+  final List<String> transactions;
+
+  const AccountTransactionsChanged({this.transactions});
+
+  @override
+  List<Object> get props => [transactions];
+}

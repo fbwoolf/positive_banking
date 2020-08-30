@@ -4,28 +4,26 @@ import 'package:flutter/services.dart';
 class FormattedInput extends StatelessWidget {
   FormattedInput({
     @required this.autoFocus,
-    @required this.controller,
     @required this.decoration,
     @required this.focusNode,
+    @required this.initialValue,
     @required this.inputFormatter,
     @required this.keyboardType,
     @required this.onChanged,
     @required this.onEditingComplete,
-    @required this.style,
     @required this.textAlign,
-    @required this.validator,
+    this.validator,
     Key key,
   }) : super(key: key);
 
   final bool autoFocus;
-  final TextEditingController controller;
   final InputDecoration decoration;
   final FocusNode focusNode;
+  final String initialValue;
   final TextInputFormatter inputFormatter;
   final TextInputType keyboardType;
   final Function(String) onChanged;
   final Function() onEditingComplete;
-  final TextStyle style;
   final TextAlign textAlign;
   final Function(String) validator;
 
@@ -34,16 +32,15 @@ class FormattedInput extends StatelessWidget {
     return TextFormField(
       autocorrect: false,
       autofocus: autoFocus,
-      controller: controller,
       decoration: decoration,
       focusNode: focusNode,
+      initialValue: initialValue,
       inputFormatters: [
         inputFormatter,
       ],
       keyboardType: keyboardType,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,
-      style: style,
       textAlign: textAlign,
       textInputAction: TextInputAction.done,
       validator: validator,
