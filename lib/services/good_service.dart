@@ -5,7 +5,7 @@ import 'package:positive_banking/models/models.dart';
 class GoodService {
   // Dollar Value of Ownership (Calculated as the max of ($1000 OR Average Balance) multiplied by 0.5%)
   double calculateGoodShares(String averageBalance) {
-    double multiplier = 0.5;
+    double multiplier = 0.05;
     double maxBalance = math.max(1000, double.parse(averageBalance));
     double ownership = maxBalance * multiplier;
     return ownership;

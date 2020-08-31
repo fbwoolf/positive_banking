@@ -6,19 +6,12 @@ import 'package:positive_banking/routes.dart';
 import 'package:positive_banking/services/services.dart';
 import 'package:positive_banking/widgets/widgets.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
-  FocusNode _focusNode1 = FocusNode();
-  FocusNode _focusNode2 = FocusNode();
-  FocusNode _focusNode3 = FocusNode();
-
-  bool _autoValidate = false;
+  final FocusNode _focusNode1 = FocusNode();
+  final FocusNode _focusNode2 = FocusNode();
+  final FocusNode _focusNode3 = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
               return LoadingIndicator();
             }
             return Form(
-              autovalidate: _autoValidate,
               key: _formKey,
               child: Column(
                 children: <Widget>[
@@ -179,8 +171,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               detailsRoute,
                             );
-                          } else {
-                            _autoValidate = true;
                           }
                         },
                         submitText: 'Submit',

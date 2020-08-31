@@ -6,6 +6,7 @@ import 'package:positive_banking/models/good.dart';
 import 'package:positive_banking/routes.dart';
 import 'package:positive_banking/services/services.dart';
 import 'package:positive_banking/widgets/widgets.dart';
+import 'package:uuid/uuid.dart';
 
 class DetailsScreen extends StatelessWidget {
   final formatNumber = new NumberFormat();
@@ -57,7 +58,7 @@ class DetailsScreen extends StatelessWidget {
                   tag: 'logo',
                 ),
                 title: Text(
-                  '${formatNumber.format(shares)} Shares',
+                  '${shares.toStringAsFixed(2)} Shares',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -86,7 +87,7 @@ class DetailsScreen extends StatelessWidget {
                   ),
                 ),
                 title: Text(
-                  '${formatNumber.format(impact.acres)} Acres',
+                  '${impact.acres.toStringAsFixed(2)} Acres',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -143,6 +144,9 @@ class DetailsScreen extends StatelessWidget {
                     Navigator.pushReplacementNamed(
                       context,
                       homeRoute,
+                    );
+                    BlocProvider.of<AccountBloc>(context).add(
+                      AccountLoaded(Uuid().v1()),
                     );
                   },
                   submitText: 'New Transaction',
