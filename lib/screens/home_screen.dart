@@ -64,15 +64,27 @@ class HomeScreen extends StatelessWidget {
                     'Make a Good transaction',
                     style: TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   SizedBox(height: 20.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Average Balance',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
                   FormattedInput(
                     autoFocus: false,
                     decoration: InputDecoration(
                       prefixText: '\$',
-                      hintText: ' Average Balance',
+                      hintText: 'Enter Amount',
                     ),
                     focusNode: _focusNode1,
                     keyboardType:
@@ -98,11 +110,23 @@ class HomeScreen extends StatelessWidget {
                         val.isEmpty ? 'Please enter a balance' : null,
                   ),
                   SizedBox(height: 20.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Transaction 1',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
                   FormattedInput(
                     autoFocus: false,
                     decoration: InputDecoration(
                       prefixText: '\$',
-                      hintText: ' Transaction 1',
+                      hintText: 'Enter Amount',
                     ),
                     focusNode: _focusNode2,
                     initialValue: state.transactions[0],
@@ -130,11 +154,23 @@ class HomeScreen extends StatelessWidget {
                         val.isEmpty ? 'Please enter a transaction' : null,
                   ),
                   SizedBox(height: 20.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Transaction 2',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
                   FormattedInput(
                     autoFocus: false,
                     decoration: InputDecoration(
                       prefixText: '\$',
-                      hintText: ' Transaction 2',
+                      hintText: 'Enter Amount',
                     ),
                     focusNode: _focusNode3,
                     initialValue: state.transactions[1],
