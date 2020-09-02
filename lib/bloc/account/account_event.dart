@@ -33,3 +33,13 @@ class AccountTransactionsChanged extends AccountEvent {
   @override
   List<Object> get props => [transactions];
 }
+
+class CalculateGood extends AccountEvent {
+  final String balance;
+  final List<String> transactions;
+
+  const CalculateGood({this.balance, this.transactions});
+
+  @override
+  List<Object> get props => [balance, transactions];
+}

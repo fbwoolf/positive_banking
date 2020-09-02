@@ -6,8 +6,9 @@ abstract class StringValidator {
 
 // Verifies the matched input string is valid
 class RegexValidator implements StringValidator {
-  RegexValidator({this.regexSource});
   final String regexSource;
+
+  RegexValidator({this.regexSource});
 
   bool isValid(String value) {
     try {
@@ -27,11 +28,11 @@ class RegexValidator implements StringValidator {
 }
 
 class ValidatorInputFormatter implements TextInputFormatter {
+  final StringValidator editingValidator;
+
   ValidatorInputFormatter({
     this.editingValidator,
   });
-
-  final StringValidator editingValidator;
 
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
