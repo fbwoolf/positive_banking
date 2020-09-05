@@ -17,7 +17,7 @@ void main() {
       create: (context) {
         return AccountBloc(accountRepository: AccountRepository())
           // Generating a unique id to load a fake account
-          ..add(AccountLoaded(Uuid().v1()));
+          ..add(AccountLoaded(id: Uuid().v1()));
       },
       child: App(),
     ),

@@ -144,7 +144,7 @@ class DetailsScreen extends StatelessWidget {
                           homeRoute,
                         );
                         BlocProvider.of<AccountBloc>(context).add(
-                          AccountLoaded(Uuid().v1()),
+                          AccountLoaded(id: Uuid().v1()),
                         );
                       },
                       submitText: 'New Transaction',

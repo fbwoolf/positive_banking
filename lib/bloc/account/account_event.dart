@@ -10,7 +10,7 @@ abstract class AccountEvent extends Equatable {
 class AccountLoaded extends AccountEvent {
   final String id;
 
-  const AccountLoaded(this.id);
+  const AccountLoaded({@required this.id}) : assert(id != null);
 
   @override
   List<Object> get props => [id];
